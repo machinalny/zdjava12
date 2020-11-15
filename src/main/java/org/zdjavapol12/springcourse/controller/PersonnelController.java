@@ -41,6 +41,16 @@ public class PersonnelController {
         return ResponseEntity.ok(personnelService.getAllPersonnel());
     }
 
+    // DeleteMapping powinien sluzyc do usuwania zasobow z serwisu. W tym przypadku jesli sie uda to 202 jesli nie to 400
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePersonnel(@PathVariable Long id){
+        if (personnelService.removePersonnelById(id)){
+            return ResponseEntity.accepted().build();
+        }
+        return ResponseEntity.badRequest().build();
+
+    }
+
 //    @GetMapping
 //    public List<Personnel> getAllPersonnel(@RequestParam(value = "id", required = false, defaultValue = "100") Long id) {
 //        if (Objects.nonNull(id)) {

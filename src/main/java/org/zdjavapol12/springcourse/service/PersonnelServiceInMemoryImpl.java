@@ -45,6 +45,10 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
 
     @Override
     public boolean removePersonnelById(Long id) {
+        if (personnelMap.containsKey(id)){
+            personnelMap.remove(id);
+            return true;
+        }
         return false;
     }
 
