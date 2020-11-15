@@ -19,13 +19,21 @@ public class PersonnelController {
 
     private final PersonnelService personnelService;
 
+    // Tu wstrzykujemy potrzebny serwis.
     public PersonnelController(PersonnelService personnelService) {
         this.personnelService = personnelService;
     }
 
+    // Metoda adnotowana jako GetMapping zostanie wywolana na zadanie: localhost:<PORT>/hotel/personnel/<id>, gdzie id to numer pracownika
     @GetMapping("/{id}")
-    public Personnel getPersonnelById(@PathVariable Long id){
-        return personnelService.getPersonnelById(id);
+    public ResponseEntity<?> getPersonnelById(@PathVariable Long id){
+        Personnel personnel = personnelService.getPersonnelById(id);
+        // Jezeli znalazlo pracownika to zwroc go.
+        if(Objects.nonNull(personnel)){
+            return ResponseEntity.ok(personnel);
+        }
+        // W innym przypadku powiedz ze nie znaleziono
+        return ResponseEntity.notFound().build();
     }
 
 //    @GetMapping
