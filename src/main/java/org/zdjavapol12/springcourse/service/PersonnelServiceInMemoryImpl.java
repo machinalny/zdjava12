@@ -22,7 +22,7 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
     @PostConstruct
     public void init() {
         personnelMap.put(nextId, Personnel.builder()
-                .id(nextId)
+                .id(getNextId())
                 .firstName("Wlasciciel")
                 .lastName("Hotelu")
                 .hireDate(LocalDate.parse("1800-01-01"))
@@ -30,7 +30,6 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
                 .salary(0.0)
                 .sickLeave(false)
                 .build());
-        nextId++;
     }
 
     @Override
@@ -58,7 +57,25 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
     }
 
     @Override
+    public List<Personnel> createBatchOfPersonnel(List<Personnel> personnels) {
+        return addPersonnel(personnels);
+    }
+
+    @Override
     public Personnel updatePersonnelById(Long id, Personnel personnel) {
         return null;
+    }
+
+    private List<Personnel> addPersonnel(List<Personnel> personnels){
+        personnels.forEach(personnel -> {
+            personnel.setId(getNextId());
+            personnelMap.put(personnel.getId(), personnel);
+        });
+        return personnels;
+
+    }
+
+    private Long getNextId(){
+        return nextId++;
     }
 }

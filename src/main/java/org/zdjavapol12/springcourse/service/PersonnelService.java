@@ -14,6 +14,8 @@ public interface PersonnelService {
 
     Personnel createNewPersonnel(Personnel personnel);
 
+    List<Personnel> createBatchOfPersonnel(List<Personnel> personnels);
+
     Personnel updatePersonnelById(Long id, Personnel personnel);
 
 }
