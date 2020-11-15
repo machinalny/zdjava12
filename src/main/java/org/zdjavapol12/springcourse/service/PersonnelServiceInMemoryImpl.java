@@ -6,9 +6,11 @@ import org.zdjavapol12.springcourse.model.Personnel;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Scope("singleton")
@@ -38,7 +40,7 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
 
     @Override
     public List<Personnel> getAllPersonnel() {
-        return null;
+        return new ArrayList<>(personnelMap.values());
     }
 
     @Override

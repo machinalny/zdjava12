@@ -26,7 +26,7 @@ public class PersonnelController {
 
     // Metoda adnotowana jako GetMapping zostanie wywolana na zadanie: localhost:<PORT>/hotel/personnel/<id>, gdzie id to numer pracownika
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPersonnelById(@PathVariable Long id){
+    public ResponseEntity<?> getPersonnelById(@PathVariable Long id) {
         Personnel personnel = personnelService.getPersonnelById(id);
         // Jezeli znalazlo pracownika to zwroc go.
         if(Objects.nonNull(personnel)){
@@ -34,6 +34,11 @@ public class PersonnelController {
         }
         // W innym przypadku powiedz ze nie znaleziono
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Personnel>> getPersonnel(){
+        return ResponseEntity.ok(personnelService.getAllPersonnel());
     }
 
 //    @GetMapping
