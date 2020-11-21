@@ -28,7 +28,7 @@ public class PersonnelServiceDbImpl implements PersonnelService {
 
     @Override
     public List<Personnel> getAllPersonnel() {
-        return null;
+        return personnelRepository.findAll();
     }
 
     @Override

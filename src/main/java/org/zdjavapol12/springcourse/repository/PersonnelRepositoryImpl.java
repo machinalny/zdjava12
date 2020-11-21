@@ -34,7 +34,7 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
 
     @Override
     public List<Personnel> findAll() {
-        return null;
+        return entityManager.createQuery("SELECT p from personnel p", Personnel.class).getResultList();
     }
 
     @Override
