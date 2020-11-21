@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.repository.PersonnelRepository;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Profile("!old")
 @Service
@@ -33,18 +37,21 @@ public class PersonnelServiceDbImpl implements PersonnelService {
 
     @Override
     public boolean removePersonnelById(Long id) {
-        return false;
+        personnelRepository.deleteById(id);
+        return true;
     }
 
     @Override
     public Personnel createNewPersonnel(Personnel personnel) {
         log.info("Tworze nowy personel");
-        return personnelRepository.create(personnel);
+        return personnelRepository.save(personnel);
     }
 
     @Override
     public List<Personnel> createBatchOfPersonnel(List<Personnel> personnels) {
-        return null;
+        List<Personnel> personnels1 = new ArrayList<>();
+        personnelRepository.saveAll(personnels).forEach(personnels1::add);
+        return personnels1;
     }
 
     @Override

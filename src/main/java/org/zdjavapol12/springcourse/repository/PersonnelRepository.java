@@ -1,19 +1,13 @@
 package org.zdjavapol12.springcourse.repository;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import org.zdjavapol12.springcourse.model.Personnel;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
-public interface PersonnelRepository {
-
-    Personnel create(Personnel personnel);
-
-    Optional<Personnel> findById(Long id);
-
+@Repository
+public interface PersonnelRepository extends CrudRepository<Personnel, Long> {
     List<Personnel> findAll();
-
-    Personnel update(Personnel personnel);
-
-    void delete(Long id);
 }

@@ -13,11 +13,12 @@ import java.util.Optional;
 // Chyba ze chcemy zarzadzac tranzakcjami wlasnorecznie.
 @Repository
 @Transactional
-public class PersonnelRepositoryImpl implements PersonnelRepository {
+@Deprecated
+public class OldPersonnelRepositoryImpl implements OldPersonnelRepository {
 
     private final EntityManager entityManager;
 
-    public PersonnelRepositoryImpl(EntityManager entityManager) {
+    public OldPersonnelRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.zdjavapol12.springcourse.model.Personnel;
-import org.zdjavapol12.springcourse.repository.PersonnelRepository;
+import org.zdjavapol12.springcourse.repository.OldPersonnelRepository;
 
 import java.time.LocalDate;
 
@@ -12,9 +12,9 @@ import java.time.LocalDate;
 @Slf4j
 public class TestRunner implements CommandLineRunner {
 
-    private final PersonnelRepository personnelRepository;
+    private final OldPersonnelRepository personnelRepository;
 
-    public TestRunner(PersonnelRepository personnelRepository) {
+    public TestRunner(OldPersonnelRepository personnelRepository) {
         this.personnelRepository = personnelRepository;
     }
 
