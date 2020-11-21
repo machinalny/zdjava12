@@ -29,7 +29,7 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
 
     @Override
     public Optional<Personnel> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(entityManager.find(Personnel.class, id));
     }
 
     @Override

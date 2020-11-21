@@ -23,7 +23,7 @@ public class PersonnelServiceDbImpl implements PersonnelService {
 
     @Override
     public Personnel getPersonnelById(Long id) {
-        return null;
+        return personnelRepository.findById(id).orElse(null);
     }
 
     @Override
