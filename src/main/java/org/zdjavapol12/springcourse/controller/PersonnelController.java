@@ -55,4 +55,9 @@ public class PersonnelController {
         return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.createBatchOfPersonnel(personnels));
     }
 
+    @PostMapping
+    public ResponseEntity<?> createOneNewPersonnel(@RequestBody Personnel personnel){
+        return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.createNewPersonnel(personnel));
+    }
+
 }

@@ -1,6 +1,8 @@
 package org.zdjavapol12.springcourse.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.zdjavapol12.springcourse.config.HotelPersonnelConfig;
@@ -13,8 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Profile("old")
 @Service
 @Scope("singleton")
+@Slf4j
 public class PersonnelServiceInMemoryImpl implements PersonnelService {
 
     private final Map<Long, Personnel> personnelMap = new HashMap<>();
@@ -97,11 +101,13 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
 
     @Override
     public Personnel createNewPersonnel(Personnel personnel) {
+        log.info("Tworze nowy personel");
         return null;
     }
 
     @Override
     public List<Personnel> createBatchOfPersonnel(List<Personnel> personnels) {
+        log.info("Tworze nowy personel");
         return addPersonnel(personnels);
     }
 
