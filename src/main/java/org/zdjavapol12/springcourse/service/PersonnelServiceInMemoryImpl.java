@@ -1,7 +1,9 @@
 package org.zdjavapol12.springcourse.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.zdjavapol12.springcourse.config.HotelPersonnelConfig;
 import org.zdjavapol12.springcourse.model.Personnel;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @Scope("singleton")
@@ -18,17 +19,60 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
 
     private final Map<Long, Personnel> personnelMap = new HashMap<>();
     private Long nextId = 1L;
+    private final HotelPersonnelConfig hotelPersonnelConfig;
+
+    @Value("${hotel.personnel.owner.name}")
+    private String ownerName;
+
+    @Value("${hotel.personnel.owner.last-name}")
+    private String ownerLastName;
+
+    @Value("${hotel.personnel.owner.hire-date}")
+    private String hireDate;
+
+    @Value("${hotel.personnel.owner.position}")
+    private String position;
+
+    @Value("${hotel.personnel.owner.salary:20000.0}")
+    private Double salary;
+
+    @Value("${hotel.personnel.owner.sick-leave}")
+    private Boolean sickLeave;
+
+    public PersonnelServiceInMemoryImpl(HotelPersonnelConfig hotelPersonnelConfig) {
+        this.hotelPersonnelConfig = hotelPersonnelConfig;
+    }
 
     @PostConstruct
     public void init() {
         personnelMap.put(nextId, Personnel.builder()
                 .id(getNextId())
-                .firstName("Wlasciciel")
-                .lastName("Hotelu")
-                .hireDate(LocalDate.parse("1800-01-01"))
-                .position("Wlasciciel")
-                .salary(0.0)
-                .sickLeave(false)
+                .firstName(ownerName)
+                .lastName(ownerLastName)
+                .hireDate(LocalDate.parse(hireDate))
+                .position(position)
+                .salary(salary)
+                .sickLeave(sickLeave)
+                .build());
+
+        personnelMap.put(nextId, Personnel.builder()
+                .id(getNextId())
+                .firstName(hotelPersonnelConfig.getNames().get(2))
+                .lastName(ownerLastName)
+                .hireDate(LocalDate.parse(hireDate))
+                .position(position)
+                .salary(salary)
+                .sickLeave(sickLeave)
+                .build());
+
+        personnelMap.put(nextId, Personnel.builder()
+                .id(getNextId())
+                .firstName(hotelPersonnelConfig.getNames().get(0))
+                .lastName(hotelPersonnelConfig.getPeople().get(hotelPersonnelConfig.getNames().get(0)))
+                .hireDate(LocalDate.parse(hireDate))
+                .position(position)
+                .salary(salary)
+                .sickLeave(sickLeave)
                 .build());
     }
 
