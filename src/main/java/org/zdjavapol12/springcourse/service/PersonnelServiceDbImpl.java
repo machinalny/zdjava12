@@ -49,9 +49,7 @@ public class PersonnelServiceDbImpl implements PersonnelService {
 
     @Override
     public List<Personnel> createBatchOfPersonnel(List<Personnel> personnels) {
-        List<Personnel> personnels1 = new ArrayList<>();
-        personnelRepository.saveAll(personnels).forEach(personnels1::add);
-        return personnels1;
+        return personnelRepository.saveAll(personnels);
     }
 
     @Override
