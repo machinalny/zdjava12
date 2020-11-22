@@ -22,4 +22,6 @@ public interface PersonnelService {
 
     List<Personnel> getPersonnelByPosition(String postion);
 
+    void cureAllPersonnel();
+
 }

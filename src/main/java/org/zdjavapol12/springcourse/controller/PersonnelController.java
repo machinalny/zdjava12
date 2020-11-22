@@ -71,4 +71,9 @@ public class PersonnelController {
         return ResponseEntity.ok(personnelService.getPersonnelByPosition(position));
     }
 
+    @GetMapping("/cure")
+    public void cureAllPersonnel(){
+        personnelService.cureAllPersonnel();
+    }
+
 }

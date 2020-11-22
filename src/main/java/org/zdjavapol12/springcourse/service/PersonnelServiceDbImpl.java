@@ -66,4 +66,9 @@ public class PersonnelServiceDbImpl implements PersonnelService {
     public List<Personnel> getPersonnelByPosition(String position) {
         return personnelRepository.selectAllPersonnelWithPositionEqualTo(position);
     }
+
+    @Override
+    public void cureAllPersonnel() {
+        personnelRepository.updateAllPersonnelToBeHealthy();
+    }
 }
