@@ -61,4 +61,9 @@ public class PersonnelServiceDbImpl implements PersonnelService {
     public List<Personnel> getPersonnelBySickLeave(Boolean sickLeave) {
         return personnelRepository.findPersonnelsBySickLeaveEquals(sickLeave);
     }
+
+    @Override
+    public List<Personnel> getPersonnelByPosition(String position) {
+        return personnelRepository.selectAllPersonnelWithPositionEqualTo(position);
+    }
 }

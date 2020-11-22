@@ -66,4 +66,9 @@ public class PersonnelController {
 
     }
 
+    @GetMapping("/position")
+    public ResponseEntity<?> getPersonnelByPosition(@RequestParam("position") String position){
+        return ResponseEntity.ok(personnelService.getPersonnelByPosition(position));
+    }
+
 }

@@ -20,4 +20,6 @@ public interface PersonnelService {
 
     List<Personnel> getPersonnelBySickLeave(Boolean sickLeave);
 
+    List<Personnel> getPersonnelByPosition(String postion);
+
 }
