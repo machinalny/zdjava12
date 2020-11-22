@@ -56,4 +56,9 @@ public class PersonnelServiceDbImpl implements PersonnelService {
     public Personnel updatePersonnelById(Long id, Personnel personnel) {
         return null;
     }
+
+    @Override
+    public List<Personnel> getPersonnelBySickLeave(Boolean sickLeave) {
+        return personnelRepository.findPersonnelsBySickLeaveEquals(sickLeave);
+    }
 }

@@ -116,6 +116,11 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
         return null;
     }
 
+    @Override
+    public List<Personnel> getPersonnelBySickLeave(Boolean sickLeave) {
+        return null;
+    }
+
     private List<Personnel> addPersonnel(List<Personnel> personnels){
         personnels.forEach(personnel -> {
             personnel.setId(getNextId());

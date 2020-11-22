@@ -60,4 +60,10 @@ public class PersonnelController {
         return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.createNewPersonnel(personnel));
     }
 
+    @GetMapping("/sick/{sickLeave}")
+    public ResponseEntity<?> getPersonnelBySickLeave(@PathVariable Boolean sickLeave){
+        return ResponseEntity.ok(personnelService.getPersonnelBySickLeave(sickLeave));
+
+    }
+
 }

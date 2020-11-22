@@ -22,15 +22,15 @@ public class TestRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Personnel personnel = Personnel.builder()
-                .firstName("Lukasz")
-                .lastName("Lukasz")
-                .hireDate(LocalDate.parse("2000-11-11"))
-                .position("Lezaca ustalona")
-                .salary(1000.0)
-                .sickLeave(true)
-                .build();
-        log.info("Nowy pracownik dodany do bazy danej {}", personnelRepository.create(personnel).toString());
+//        Personnel personnel = Personnel.builder()
+//                .firstName("Lukasz")
+//                .lastName("Lukasz")
+//                .hireDate(LocalDate.parse("2000-11-11"))
+//                .position("Lezaca ustalona")
+//                .salary(1000.0)
+//                .sickLeave(true)
+//                .build();
+//        log.info("Nowy pracownik dodany do bazy danej {}", personnelRepository.create(personnel).toString());
 
     }
 }

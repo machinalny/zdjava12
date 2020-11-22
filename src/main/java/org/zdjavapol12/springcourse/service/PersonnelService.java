@@ -18,4 +18,6 @@ public interface PersonnelService {
 
     Personnel updatePersonnelById(Long id, Personnel personnel);
 
+    List<Personnel> getPersonnelBySickLeave(Boolean sickLeave);
+
 }
