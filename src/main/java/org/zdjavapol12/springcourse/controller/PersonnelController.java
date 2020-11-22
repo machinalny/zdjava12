@@ -42,12 +42,6 @@ public class PersonnelController {
         return ResponseEntity.ok(personnelService.getAllPersonnel(page, size));
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(WrongPageException.class)
-    public Error pageExceptionHandler(WrongPageException wrongPageException){
-        return new Error(wrongPageException.getMessage());
-    }
-
     // DeleteMapping powinien sluzyc do usuwania zasobow z serwisu. W tym przypadku jesli sie uda to 202 jesli nie to 400
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePersonnel(@PathVariable Long id) {
