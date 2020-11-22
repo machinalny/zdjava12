@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zdjavapol12.springcourse.exception.WrongPageException;
+import org.zdjavapol12.springcourse.model.Error;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.service.PersonnelService;
 
@@ -38,6 +40,12 @@ public class PersonnelController {
     public ResponseEntity<List<Personnel>> getPersonnel(@RequestParam(required = false) Integer page,
                                                         @RequestParam(required = false) Integer size) {
         return ResponseEntity.ok(personnelService.getAllPersonnel(page, size));
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(WrongPageException.class)
+    public Error pageExceptionHandler(WrongPageException wrongPageException){
+        return new Error(wrongPageException.getMessage());
     }
 
     // DeleteMapping powinien sluzyc do usuwania zasobow z serwisu. W tym przypadku jesli sie uda to 202 jesli nie to 400

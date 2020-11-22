@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.zdjavapol12.springcourse.exception.WrongPageException;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.repository.PersonnelRepository;
 
@@ -35,12 +36,15 @@ public class PersonnelServiceDbImpl implements PersonnelService {
     }
 
     @Override
-    public List<Personnel> getAllPersonnel(Integer page, Integer size) {
+    public List<Personnel> getAllPersonnel(Integer page, Integer size) throws WrongPageException {
         if(!Objects.nonNull(page)){
             page = 1;
         }
         if (!Objects.nonNull(size)){
             size = 5;
+        }
+        if(page < 1){
+            throw new WrongPageException("Strona nie moze byc mniejsza niz 1");
         }
         Sort sort = Sort.by("salary").descending();
         Pageable pageable = PageRequest.of(page - 1, size, sort);
