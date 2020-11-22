@@ -13,7 +13,7 @@ public class GlobalExceptionController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(WrongPageException.class)
-    public Error pageExceptionHandler(WrongPageException wrongPageException){
+    public Error pageExceptionHandler(WrongPageException wrongPageException) {
         return new Error(wrongPageException.getMessage());
     }
 

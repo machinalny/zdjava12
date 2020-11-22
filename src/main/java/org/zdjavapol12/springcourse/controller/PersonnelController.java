@@ -9,6 +9,7 @@ import org.zdjavapol12.springcourse.model.Error;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.service.PersonnelService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,7 +60,7 @@ public class PersonnelController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createOneNewPersonnel(@RequestBody Personnel personnel){
+    public ResponseEntity<?> createOneNewPersonnel(@Valid @RequestBody Personnel personnel){
         return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.createNewPersonnel(personnel));
     }
 
