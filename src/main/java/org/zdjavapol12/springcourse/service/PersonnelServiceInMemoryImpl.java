@@ -86,7 +86,7 @@ public class PersonnelServiceInMemoryImpl implements PersonnelService {
     }
 
     @Override
-    public List<Personnel> getAllPersonnel() {
+    public List<Personnel> getAllPersonnel(Integer page, Integer size) {
         return new ArrayList<>(personnelMap.values());
     }
 

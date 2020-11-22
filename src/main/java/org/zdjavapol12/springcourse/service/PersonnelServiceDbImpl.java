@@ -3,6 +3,9 @@ package org.zdjavapol12.springcourse.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.repository.PersonnelRepository;
@@ -10,6 +13,7 @@ import org.zdjavapol12.springcourse.repository.PersonnelRepository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -31,8 +35,16 @@ public class PersonnelServiceDbImpl implements PersonnelService {
     }
 
     @Override
-    public List<Personnel> getAllPersonnel() {
-        return personnelRepository.findAll();
+    public List<Personnel> getAllPersonnel(Integer page, Integer size) {
+        if(!Objects.nonNull(page)){
+            page = 1;
+        }
+        if (!Objects.nonNull(size)){
+            size = 5;
+        }
+        Sort sort = Sort.by("salary").descending();
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+        return personnelRepository.findAll(pageable).getContent();
     }
 
     @Override

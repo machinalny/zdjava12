@@ -8,7 +8,7 @@ public interface PersonnelService {
 
     Personnel getPersonnelById(Long id);
 
-    List<Personnel> getAllPersonnel();
+    List<Personnel> getAllPersonnel(Integer page, Integer size);
 
     boolean removePersonnelById(Long id);
 
