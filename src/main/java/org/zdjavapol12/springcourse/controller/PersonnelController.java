@@ -30,7 +30,7 @@ public class PersonnelController {
         return "personnel-add";
     }
 
-    @PostMapping("/peronnel/add")
+    @PostMapping("/personnel/add")
     public String addPersonnel(@ModelAttribute("personnel") Personnel personnel){
         personnelService.createNewPersonnel(personnel);
         return "redirect:/";

@@ -8,7 +8,7 @@
     <title>Dodaj pracownika</title>
 </head>
 <body>
-<form class="form-control" method="post" th:action="@{/peronnel/add}" th:object="${personnel}">
+<form class="form-control" method="post" th:action="@{/personnel/add}" th:object="${personnel}">
     <label>
         Imie:
         <input type="text" th:field="*{firstName}">
