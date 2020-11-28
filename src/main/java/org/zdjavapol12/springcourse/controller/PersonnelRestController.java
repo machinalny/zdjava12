@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping(path = "/hotel/personnel")
+@RequestMapping(path = "/api/hotel/personnel")
 @Slf4j
 public class PersonnelRestController {
 

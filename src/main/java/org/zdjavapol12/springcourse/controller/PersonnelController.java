@@ -3,10 +3,7 @@ package org.zdjavapol12.springcourse.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.service.PersonnelService;
 
@@ -48,6 +45,12 @@ public class PersonnelController {
         return "personnel-add";
     }
 
+    @GetMapping("/personnel/update/{id}")
+    public String showPersonnelAdd(ModelMap modelMap, @PathVariable Long id){
+        modelMap.addAttribute("personnel", personnelService.getPersonnelById(id));
+        return "personnel-update";
+    }
+
     @PostMapping("/personnel/add")
     public String addPersonnel(@Valid @ModelAttribute("personnel") Personnel personnel,
                                final Errors errors){
@@ -59,6 +62,16 @@ public class PersonnelController {
         }
         personnelService.createNewPersonnel(personnel);
         return "redirect:/";
+    }
+
+    @PostMapping("/personnel/update")
+    public String updatePersonnel(@Valid @ModelAttribute("personnel") Personnel personnel,
+                               final Errors errors){
+        if (errors.hasErrors()){
+            return "personnel-update";
+        }
+        personnelService.updatePersonnel(personnel);
+        return "redirect:/personnel/"+personnel.getId();
     }
 
 }

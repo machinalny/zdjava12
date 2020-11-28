@@ -17,6 +17,7 @@ public interface PersonnelService {
     List<Personnel> createBatchOfPersonnel(List<Personnel> personnels);
 
     Personnel updatePersonnelById(Long id, Personnel personnel);
+    Personnel updatePersonnel(Personnel personnel);
 
     List<Personnel> getPersonnelBySickLeave(Boolean sickLeave);
 
