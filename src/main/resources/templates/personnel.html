@@ -8,6 +8,19 @@
     <title>Pracownicy</title>
 </head>
 <body>
+<div>
+    <h1>Lista pracownikow</h1>
+    <div th:each="personnel : ${personnelList}">
+        <p th:text="${personnel.id}"></p>
+        <p th:text="${personnel.firstName}"></p>
+        <p th:text="${personnel.lastName}"></p>
+        <p th:text="${personnel.position}"></p>
+        <p th:text="${personnel.hireDate}"></p>
+        <p th:text="${personnel.salary}"></p>
+        <p th:text="${personnel.sickLeave}"></p>
+    </div>
+
+</div>
 
 </body>
 </html>

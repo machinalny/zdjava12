@@ -27,6 +27,12 @@ public class PersonnelController {
         return "welcome";
     }
 
+    @GetMapping("/personnel")
+    public String personnel(ModelMap modelMap){
+        modelMap.addAttribute("personnelList", personnelService.getAllPersonnel(1, 100));
+        return "personnel";
+    }
+
     @GetMapping("/personnel/add")
     public String showPersonnelAdd(ModelMap modelMap){
         modelMap.addAttribute("personnel", new Personnel());
