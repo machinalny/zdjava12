@@ -8,28 +8,41 @@
     <title>Dodaj pracownika</title>
 </head>
 <body>
-<form class="form-control" method="post" th:action="@{/personnel/add}" th:object="${personnel}">
+<form method="post" th:action="@{/personnel/add}" th:object="${personnel}">
+    <div class="form-group">
     <label>
         Imie:
         <input type="text" th:field="*{firstName}">
     </label>
+    </div>
+    <div class="form-group">
     <label>
         Nazwisko:
         <input type="text" th:field="*{lastName}">
     </label>
+    </div>
+    <div class="form-group">
     <label>
         Stanowisko:
         <input type="text" th:field="*{position}">
     </label>
+    </div>
+    <div class="form-group">
     <label>
         Data zatrudnienia
         <input type="date" th:field="*{hireDate}">
     </label>
+    </div>
+    <div class="form-group">
     <label>
         Wynagrodzenie:
         <input type="number" th:field="*{salary}">
+        <ul th:if="${#fields.hasErrors('salary')}">
+            <li class="text-danger" th:each="err : ${#fields.errors('salary')}" th:text="${err}">_Salary is incorrect</li>
+        </ul>
     </label>
-    <button type="submit">DODAJ PRACOWNIKA</button>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" >DODAJ PRACOWNIKA</button>
 </form>
 </body>
 </html>
