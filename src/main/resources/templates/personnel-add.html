@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Dodaj pracownika</title>
+</head>
+<body>
+<form class="form-control" method="post" th:action="@{/peronnel/add}" th:object="${personnel}">
+    <label>
+        Imie:
+        <input type="text" th:field="*{firstName}">
+    </label>
+    <label>
+        Nazwisko:
+        <input type="text" th:field="*{lastName}">
+    </label>
+    <label>
+        Stanowisko:
+        <input type="text" th:field="*{position}">
+    </label>
+    <label>
+        Data zatrudnienia
+        <input type="date" th:field="*{hireDate}">
+    </label>
+    <label>
+        Wynagrodzenie:
+        <input type="number" th:field="*{salary}">
+    </label>
+    <button type="submit">DODAJ PRACOWNIKA</button>
+</form>
+</body>
+</html>
