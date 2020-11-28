@@ -9,6 +9,7 @@
 </head>
 <body>
 <form method="post" th:action="@{/personnel/add}" th:object="${personnel}">
+<!--    <h1 th:if="${#fields.hasErrors()}" th:text="${errorMsg}"></h1>-->
     <div class="form-group">
     <label>
         Imie:

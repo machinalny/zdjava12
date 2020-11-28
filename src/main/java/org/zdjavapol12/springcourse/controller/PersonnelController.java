@@ -30,6 +30,7 @@ public class PersonnelController {
     @GetMapping("/personnel/add")
     public String showPersonnelAdd(ModelMap modelMap){
         modelMap.addAttribute("personnel", new Personnel());
+        modelMap.addAttribute("errorMsg", "Nie masz poprawnych pol");
         return "personnel-add";
     }
 
@@ -38,6 +39,9 @@ public class PersonnelController {
                                final Errors errors){
         if (errors.hasErrors()){
             return "personnel-add";
+        }
+        if (personnel.getFirstName().equals("Bankowy")){
+            throw new RuntimeException("Blad!");
         }
         personnelService.createNewPersonnel(personnel);
         return "redirect:/";
