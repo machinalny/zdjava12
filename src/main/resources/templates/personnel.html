@@ -9,9 +9,9 @@
 </head>
 <body>
 <div>
-    <h1>Lista pracownikow</h1>
+    <h1 th:text="#{personnel.list}"></h1>
     <div th:each="personnel : ${personnelList}">
-        <p th:text="${personnel.id}"></p>
+        <a th:href="@{/personnel/__${personnel.id}__}" th:text="${personnel.id}"></a>
         <p th:text="${personnel.firstName}"></p>
         <p th:text="${personnel.lastName}"></p>
         <p th:text="${personnel.position}"></p>

@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.service.PersonnelService;
@@ -26,6 +27,13 @@ public class PersonnelController {
         modelMap.addAttribute("hotelName", "HotelParadise");
         return "welcome";
     }
+
+    @GetMapping("/personnel/{id}")
+    public String personnel(ModelMap modelMap, @PathVariable Long id){
+        modelMap.addAttribute("personnel", personnelService.getPersonnelById(id));
+        return "one-personnel";
+    }
+
 
     @GetMapping("/personnel")
     public String personnel(ModelMap modelMap){
