@@ -30,10 +30,10 @@ public class PersonnelRestController {
 
     // Metoda adnotowana jako GetMapping zostanie wywolana na zadanie: localhost:<PORT>/hotel/personnel/<id>, gdzie id to numer pracownika
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPersonnelById(@PathVariable Long id) {
+    public ResponseEntity<?> getPersonnelById(@PathVariable Long id, @AuthenticationPrincipal User user) {
         Personnel personnel = personnelService.getPersonnelById(id);
         // Jezeli znalazlo pracownika to zwroc go.
-//        log.info("Uzytkownik o loginie {} chce dostac personel o id {}", user.getUsername(), id);
+        log.info("Uzytkownik o loginie {} chce dostac personel o id {}", user.getUsername(), id);
         if (Objects.nonNull(personnel)) {
             return ResponseEntity.ok(personnel);
         }
