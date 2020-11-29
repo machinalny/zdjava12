@@ -2,6 +2,7 @@ package org.zdjavapol12.springcourse.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.repository.OldPersonnelRepository;
@@ -21,8 +22,9 @@ public class TestRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+//        StandardPasswordEncoder standardPasswordEncoder = new StandardPasswordEncoder("secret");
+//        System.out.println("HASLO: " + standardPasswordEncoder.encode("chrobry"));
 
-//        Personnel personnel = Personnel.builder()
 //                .firstName("Lukasz")
 //                .lastName("Lukasz")
 //                .hireDate(LocalDate.parse("2000-11-11"))

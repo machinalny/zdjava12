@@ -3,11 +3,16 @@ package org.zdjavapol12.springcourse.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.zdjavapol12.springcourse.model.Personnel;
 import org.zdjavapol12.springcourse.service.PersonnelService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +33,7 @@ public class PersonnelRestController {
     public ResponseEntity<?> getPersonnelById(@PathVariable Long id) {
         Personnel personnel = personnelService.getPersonnelById(id);
         // Jezeli znalazlo pracownika to zwroc go.
+//        log.info("Uzytkownik o loginie {} chce dostac personel o id {}", user.getUsername(), id);
         if (Objects.nonNull(personnel)) {
             return ResponseEntity.ok(personnel);
         }
