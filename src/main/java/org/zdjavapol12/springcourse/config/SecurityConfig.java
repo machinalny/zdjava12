@@ -5,27 +5,26 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
-
-import javax.sql.DataSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.zdjavapol12.springcourse.service.UserDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final DataSource dataSource;
+    private final UserDetailServiceImpl userDetailService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public SecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SecurityConfig(UserDetailServiceImpl userDetailService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userDetailService = userDetailService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled from users where username = ?")
-                .authoritiesByUsernameQuery("select username, authority from authorities where username = ?")
-                .passwordEncoder(new StandardPasswordEncoder("secret"));
+        auth.userDetailsService(userDetailService).passwordEncoder(bCryptPasswordEncoder);
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -38,6 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic();
     }
 
+    //    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication().dataSource(dataSource)
+//                .usersByUsernameQuery("select username, password, enabled from users where username = ?")
+//                .authoritiesByUsernameQuery("select username, authority from authorities where username = ?")
+//                .passwordEncoder(new StandardPasswordEncoder("secret"));
+//    }
     //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()

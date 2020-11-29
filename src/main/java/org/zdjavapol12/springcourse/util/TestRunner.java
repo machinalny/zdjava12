@@ -2,37 +2,37 @@ package org.zdjavapol12.springcourse.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.zdjavapol12.springcourse.model.Personnel;
-import org.zdjavapol12.springcourse.repository.OldPersonnelRepository;
+import org.zdjavapol12.springcourse.model.User;
+import org.zdjavapol12.springcourse.repository.UserRepository;
 
-import java.time.LocalDate;
+import java.util.Objects;
 
 @Component
 @Slf4j
 public class TestRunner implements CommandLineRunner {
 
-    private final OldPersonnelRepository personnelRepository;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public TestRunner(OldPersonnelRepository personnelRepository) {
-        this.personnelRepository = personnelRepository;
+    public TestRunner(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
 
     @Override
     public void run(String... args) throws Exception {
-//        StandardPasswordEncoder standardPasswordEncoder = new StandardPasswordEncoder("secret");
-//        System.out.println("HASLO: " + standardPasswordEncoder.encode("chrobry"));
+        if (Objects.isNull(userRepository.findByUsername("Lukasz"))){
+            User user = User.builder()
+                    .username("Lukasz")
+                    .password(bCryptPasswordEncoder.encode("password"))
+                    .enabled(true)
+                    .role("ROLE_ADMIN").build();
+            userRepository.save(user);
+        }
 
-//                .firstName("Lukasz")
-//                .lastName("Lukasz")
-//                .hireDate(LocalDate.parse("2000-11-11"))
-//                .position("Lezaca ustalona")
-//                .salary(1000.0)
-//                .sickLeave(true)
-//                .build();
-//        log.info("Nowy pracownik dodany do bazy danej {}", personnelRepository.create(personnel).toString());
 
     }
 }
